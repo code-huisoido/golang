@@ -7,11 +7,12 @@ import (
 
 func main() {
 	ch := make(chan string)
-
+	
 	go sendData(ch)
 	go getData(ch)
 
-	time.Sleep(1)
+	//这里省略time.Sleep会让其他goruntine不执行，因为来不及执行goruntine就退出了main函数
+	time.Sleep(1000 * time.Millisecond)
 }
 
 func sendData(ch chan string) {
